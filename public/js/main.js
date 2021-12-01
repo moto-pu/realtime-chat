@@ -47,8 +47,12 @@ onValue(ref(database,room), (snapshot)=> {
     console.log(k);
     console.log(snapshot.val());
     const data = snapshot.val();
-    Object.values(data).reverse().forEach(elm=> {
+    Object.values(data)
+        .map((elm,idx)=>({...elm, id: idx + 1}))
+        .reverse()
+        .forEach(elm=> {
       let str = "";
+      str += '<div class="name">'+ elm.id + '</div>';
       str += '<div class="name">名前：' + elm.name + '</div>';
       str += '<div class="text">日時：' + elm.date + '</div>';
       str += '<div class="text">メッセージ：' + elm.message + '</div><hr>';
