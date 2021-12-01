@@ -33,8 +33,8 @@ send.addEventListener('click', function() {
     message: message.value,
     date: now.getFullYear() + '年' + Number(now.getMonth()+1) + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
   });
+  localStorage.setItem('name', name.value);
   message.value="";
-  name.value="";
 });
 
 //受信処理
