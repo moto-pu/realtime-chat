@@ -31,7 +31,7 @@ send.addEventListener('click', function() {
   push(ref(database,room),{
     name: name.value,
     message: message.value,
-    date: now.getFullYear() + '年' + now.getMonth()+1 + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
+    date: now.getFullYear() + '年' + Number(now.getMonth()+1) + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
   });
   message.value="";
   name.value="";
@@ -47,7 +47,7 @@ onValue(ref(database,room), (snapshot)=> {
     console.log(k);
     console.log(snapshot.val());
     const data = snapshot.val();
-    Object.values(data).forEach(elm=> {
+    Object.values(data).reverse().forEach(elm=> {
       let str = "";
       str += '<div class="name">名前：' + elm.name + '</div>';
       str += '<div class="text">日時：' + elm.date + '</div>';
