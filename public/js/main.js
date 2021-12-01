@@ -31,10 +31,10 @@ send.addEventListener('click', function() {
   push(ref(database,room),{
     name: name.value,
     message: message.value,
-    date: now.getFullYear() + '年' + now.getMonth()+1 + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
+    date: now.getFullYear() + '年' + Number(now.getMonth()+1) + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
   });
+  localStorage.setItem('name', name.value);
   message.value="";
-  name.value="";
 });
 
 //受信処理
@@ -47,8 +47,12 @@ onValue(ref(database,room), (snapshot)=> {
     console.log(k);
     console.log(snapshot.val());
     const data = snapshot.val();
-    Object.values(data).forEach(elm=> {
+    Object.values(data)
+        .map((elm,idx)=>({...elm, id: idx + 1}))
+        .reverse()
+        .forEach(elm=> {
       let str = "";
+      str += '<div class="name">'+ elm.id + '</div>';
       str += '<div class="name">名前：' + elm.name + '</div>';
       str += '<div class="text">日時：' + elm.date + '</div>';
       str += '<div class="text">メッセージ：' + elm.message + '</div><hr>';
