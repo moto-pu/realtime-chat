@@ -18,3 +18,16 @@ textarea {
 #output {
   background-color: skyblue;
 }
+
+.status {
+  text-align: right;
+}
+
+.loginBlk {
+  text-align: left;
+  width: 200px;
+}
+.loginBlk input {
+  display: inline-block;
+  margin: 10px;
+}
