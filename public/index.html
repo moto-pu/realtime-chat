@@ -21,27 +21,16 @@
 <div>
   <div class="input_content__warpper">
     <div class="input_content">
-      Name:<input type="text" id="name">
+      名前:<input type="text" id="name">
     </div>
     <div class="input_content">
-      Message:<textarea id="message" row="10"></textarea>
+      メッセージ:<textarea id="message" row="10"></textarea>
 
     </div>
-    <button id="send"><span>send</span><span>send</span></button>
+    <button id="send"><span>送信</span><span>送信</span></button>
   </div>
 
     <div id="output"></div>
 </div>
 <script type="module" src="/js/main.js"></script>
-<script>
-  window.onload = function() {
-    const nameElm = document.querySelector('#name');
-    const nameVal = localStorage.getItem('name') ?? '';
-    nameElm.value = nameVal;
-    const emailElm = document.querySelector('#email');
-    const emailVal = localStorage.getItem('email') ?? '';
-    emailElm.value = emailVal;
-
-  };
-</script>
 </body>
