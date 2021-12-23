@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1 class="main_title">リアルタイムチャット</h1>
+<div class="status"><span id="statusMessage"></span></div>
+<h1>リアルタイムチャット</h1>
+<div id="loginBlk" class="loginBlk">
+    <input id="email" placeholder="email" type="text"/>
+    <input id="password" placeholder="password" type="password"/>
+    <button id="login">ログイン</button>
+</div>
+<button id="logout">ログアウト</button>
 <div>
   <div class="input_content__warpper">
     <div class="input_content">
@@ -18,23 +25,23 @@
     </div>
     <div class="input_content">
       Message:<textarea id="message" row="10"></textarea>
-      
+
     </div>
     <button id="send"><span>send</span><span>send</span></button>
   </div>
-    
+
     <div id="output"></div>
 </div>
-<script type="module" src="https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/9.4.1/firebase-auth.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/9.4.1/firebase-firestore.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js"></script>
 <script type="module" src="/js/main.js"></script>
 <script>
   window.onload = function() {
     const nameElm = document.querySelector('#name');
     const nameVal = localStorage.getItem('name') ?? '';
     nameElm.value = nameVal;
+    const emailElm = document.querySelector('#email');
+    const emailVal = localStorage.getItem('email') ?? '';
+    emailElm.value = emailVal;
+
   };
 </script>
 </body>

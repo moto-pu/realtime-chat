@@ -2,6 +2,11 @@ body {
   background-color: gainsboro;
 }
 
+h1 {
+  color: coral;
+  text-align: center;
+}
+
 div {
   text-align: center;
 }
@@ -90,4 +95,16 @@ button#send:hover span:nth-child(2) {
 #output .box{
   padding: 20px;
   border-bottom: 1px solid #ccc;
+}
+.status {
+  text-align: right;
+}
+
+.loginBlk {
+  text-align: left;
+  width: 200px;
+}
+.loginBlk input {
+  display: inline-block;
+  margin: 10px;
 }
