@@ -52,10 +52,12 @@ onValue(ref(database,room), (snapshot)=> {
         .reverse()
         .forEach(elm=> {
       let str = "";
+      str += '<div class="box">';
       str += '<div class="name">'+ elm.id + '</div>';
       str += '<div class="name">名前：' + elm.name + '</div>';
       str += '<div class="text">日時：' + elm.date + '</div>';
-      str += '<div class="text">メッセージ：' + elm.message + '</div><hr>';
+      str += '<div class="text">メッセージ：' + elm.message + '</div>';
+      str += '</div>';
       output.innerHTML += str;
     });
 

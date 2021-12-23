@@ -6,21 +6,23 @@
     <title>Chat App</title>
 
     <!-- ここにアプリのscriptタグを貼り付けます。 -->
-
+    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>リアルタイムチャット</h1>
+<h1 class="main_title">リアルタイムチャット</h1>
 <div>
-    <div>
-        Name<br><input type="text" id="name">
+  <div class="input_content__warpper">
+    <div class="input_content">
+      Name:<input type="text" id="name">
     </div>
-    <br>
-    <div>
-        Message<br><textarea id="message" row="10"></textarea><br><br>
-        <button id="send">send</button>
+    <div class="input_content">
+      Message:<textarea id="message" row="10"></textarea>
+      
     </div>
-    <hr>
+    <button id="send"><span>send</span><span>send</span></button>
+  </div>
+    
     <div id="output"></div>
 </div>
 <script type="module" src="https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js"></script>
