@@ -47,7 +47,7 @@ textarea {
  padding: 5px;
 }
 
-button#send{
+button{
   position: relative;
   display: inline-block;
   width:300px;
@@ -58,7 +58,7 @@ button#send{
   border: 0;
 }
 
-button#send span{
+button span{
   display: block;
   position: absolute;
   top: 0;
@@ -70,25 +70,25 @@ button#send span{
   transition: 0.5s;
 }
 
-button#send span:nth-child(1) {
+button span:nth-child(1) {
   background: #fff;
   color: #000;
   transform: rotateX(0deg);
   transform-origin: 0 30% -10px;
 }
 
-button#send:hover span:nth-child(1) {
+button:hover span:nth-child(1) {
   transform: rotateX(-90deg);
 }
 
-button#send span:nth-child(2) {
+button span:nth-child(2) {
   background: #000;
   color: #fff;
   transform: rotateX(90deg);
   transform-origin: 0 30% -10px;
 }
 
-button#send:hover span:nth-child(2) {
+button:hover span:nth-child(2) {
   transform: rotateX(0deg);
 }
 
@@ -100,11 +100,18 @@ button#send:hover span:nth-child(2) {
   text-align: right;
 }
 
-.loginBlk {
+.loginBlk,.logoutBlk {
   text-align: left;
   width: 200px;
 }
 .loginBlk input {
   display: inline-block;
   margin: 10px;
+}
+.loginBlk #login{
+  margin: 10px;
+  width: 80%;
+}
+#logout{
+  width: 80%;
 }
