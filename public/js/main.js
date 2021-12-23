@@ -47,16 +47,25 @@ window.onload = ()=> {
       statusMessage.innerText = `ようこそ${user.email}さん`;
       loginBlk.style.display = 'none';
       logoutElm.style.display = 'block';
+      localStorage.setItem('email', user.email);
+      localStorage.setItem('isLogin', 'true');
     } else {
       statusMessage.innerText = 'ログインしていません';
       loginBlk.style.display = 'block';
       logoutElm.style.display = 'none';
+      localStorage.setItem('isLogin', 'false');
     }
   });
 
+  const isLogin = ()=>localStorage.getItem('isLogin')==='true';
+  const getCurrentEmail = ()=>localStorage.getItem('email');
 
 //送信処理
   send.addEventListener('click', ()=>{
+    if (!isLogin()) {
+      alert('ログインしてからお使いください');
+      return;
+    }
     if (!name.value || name.value.length === 0) {
       alert('名前を入力してください');
       return;
@@ -67,6 +76,7 @@ window.onload = ()=> {
     }
     const now = new Date();
     push(ref(database, room), {
+      email: getCurrentEmail(),
       name: name.value,
       message: message.value,
       date: now.getFullYear() + '年' + Number(now.getMonth() + 1) + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
@@ -99,6 +109,7 @@ window.onload = ()=> {
           .forEach(elm => {
             let str = "";
             str += '<div class="name">' + elm.id + '</div>';
+            str += '<div class="email">メール：' + (elm?.email??'名無し') + '</div>';
             str += '<div class="name">名前：' + elm.name + '</div>';
             str += '<div class="text">日時：' + elm.date + '</div>';
             str += '<div class="text">メッセージ：' + elm.message + '</div><hr>';
