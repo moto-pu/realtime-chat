@@ -35,6 +35,12 @@ window.onload = ()=> {
   const emailElm = document.querySelector('#email');
   const passwordElm = document.querySelector('#password');
 
+  const nameElm = document.querySelector('#name');
+  const nameVal = localStorage.getItem('name') ?? '';
+  nameElm.value = nameVal;
+  const emailVal = localStorage.getItem('email') ?? '';
+  emailElm.value = emailVal;
+
 
   auth.onAuthStateChanged((user) => {
     if (user) {
@@ -51,14 +57,30 @@ window.onload = ()=> {
 
 //送信処理
   send.addEventListener('click', ()=>{
+    if (!name.value || name.value.length === 0) {
+      alert('名前を入力してください');
+      return;
+    }
+    if (!message.value || message.value.length === 0) {
+      alert('メッセージを入力してください');
+      return;
+    }
     const now = new Date();
     push(ref(database, room), {
       name: name.value,
       message: message.value,
       date: now.getFullYear() + '年' + Number(now.getMonth() + 1) + '月' + now.getDate() + '日' + now.getHours() + '時' + now.getMinutes() + '分'
+    }).then(data=>{
+      console.log(data);
+      message.value = "";
+    }).catch(err=>{
+      if (err.message.indexOf('PERMISSION_DENIED')===0) {
+        alert('ログインしてください');
+      } else {
+        alert(`エラーが発生しました(${err.message})`);
+      }
     });
     localStorage.setItem('name', name.value);
-    message.value = "";
   });
 
 //受信処理
@@ -99,7 +121,7 @@ window.onload = ()=> {
           // Signed in
           const user = userCredential.user;
           console.log({user});
-          // ...
+          location.reload();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -111,6 +133,7 @@ window.onload = ()=> {
   logoutElm.addEventListener('click', ()=>{
     signOut(auth).then(() => {
       console.log('logout!');
+      location.reload();
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
